@@ -32,12 +32,13 @@ namespace Assets.Scripts
             moveVector.x = Input.GetAxis("Horizontal") * speedMove;
             if (moveVector.x != 0)
             {
-                _animator.Play("Run");
+                _animator.Play("Move");
             }
             else
             {
                 _animator.Play("Stay");
             }
+
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 moveVector.x = Input.GetAxis("Horizontal") * shiftMove;
@@ -55,12 +56,16 @@ namespace Assets.Scripts
         private void GameGravity()
         {
         
-            if (!ch_controller.isGrounded) gravity -= 20f * Time.deltaTime;
+            if (!ch_controller.isGrounded) 
+                gravity -= 20f * Time.deltaTime;
             else
             {
                 gravity = -1f;
             }
-
+            if (Input.GetKey(KeyCode.Space) && ch_controller.isGrounded)
+            {
+                _animator.Play("Jump");
+            }
             if (Input.GetKeyDown(KeyCode.Space) && ch_controller.isGrounded)
             {
                 gravity = jumpPower;
