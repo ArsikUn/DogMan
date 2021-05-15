@@ -1,63 +1,61 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-       [SerializeField]
-       private float speed = 6f;
+    public float speedMove;
+    public float shiftMove;
+    public float jumpPower;
 
-       [SerializeField]
-       private Rigidbody physicsBody = null;
-       
-       [SerializeField] 
-       private Transform groundCheck;
+    private float gravity;
+    private Vector3 moveVector;
 
-       [SerializeField]
-       private Vector3 _movement;
+    private CharacterController ch_controller;
+    private void Start()
+    {
+        ch_controller = GetComponent<CharacterController>();
+    }
 
-       public bool isGround ;
+    private void Update()
+    {
+        CharasterMove();
+        GameGravity();
+    }
 
-       private void Update()
-       {
-              if (Physics2D.Linecast(transform.position,
-                     groundCheck.position,
-                     1 << LayerMask.NameToLayer("Ground")))
+    private void CharasterMove()
+    {
+        moveVector = Vector3.zero;
+        moveVector.x = Input.GetAxis("Horizontal") * speedMove;
+        moveVector.y = gravity;
 
-              {
-                     isGround = true;
-              }
-              else
-              {
-                     isGround = false;
-              }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            moveVector.x = Input.GetAxis("Horizontal") * shiftMove;
+        }
+        if (Vector3.Angle(Vector3.forward, moveVector) > 1f || Vector3.Angle(Vector3.forward, moveVector) == 0)
+        {
+            Vector3 direct = Vector3.RotateTowards(transform.forward, moveVector, speedMove, 0.0f);
+            transform.rotation = Quaternion.LookRotation(direct);
+        }
+        ch_controller.Move(moveVector * Time.deltaTime);
+    }
 
-              float inputY = 0;
-              if (Input.GetKey(KeyCode.Space)&& isGround==true)
-              {
-                            inputY = 1;
-              }
-              
-              else if (Input.GetKey(KeyCode.DownArrow))
-              {
-                     inputY = -1;
-              }
-              float inputX = 0;
-              if ( Input.GetKey(KeyCode.RightArrow) )
-              {
-                     inputX = 1;
-              }
-              else if (Input.GetKey(KeyCode.LeftArrow))
-              {
-                     inputX = -1;
-              }
+    private void GameGravity()
+    {
+        
+        if (!ch_controller.isGrounded) gravity -= 20f * Time.deltaTime;
+        else
+        {
+            gravity = -1f;
+        }
 
-              _movement = new Vector3(inputX, inputY, 0).normalized;
-
-       }
-
-       private void FixedUpdate ()
-       {
-              physicsBody.velocity = _movement * speed;
-       }
+        if (Input.GetKeyDown(KeyCode.Space) && ch_controller.isGrounded)
+        {
+            gravity = jumpPower;
+        }
+        
+    }
+     
 }

@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: f82ab0cb13b98d64fb4fcc3a6c52c6bd
+=======
 <<<<<<< HEAD:DogMan/Assets/Prefabs/Bullet trap.prefab.meta
 guid: 6310e82f2c5b4da4f86b3916e7f92de8
 =======
 guid: b05619c853aa2fb49b2d94abc12a7656
 >>>>>>> 9ac81a69a47d4e6ffa96f0cea3cfad77c79ded74:DogMan/Assets/Prefabs/Player.prefab.meta
+>>>>>>> 9ac81a69a47d4e6ffa96f0cea3cfad77c79ded74
 PrefabImporter:
   externalObjects: {}
   userData: 
