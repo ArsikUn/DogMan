@@ -34,7 +34,7 @@ namespace Trap
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("F");
+           
             if (other.gameObject.tag == "player")
             {
                 death();

@@ -9,7 +9,7 @@ public class TrapScript : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("F");
+        
         if (other.gameObject.tag=="player")
         {
             death();
