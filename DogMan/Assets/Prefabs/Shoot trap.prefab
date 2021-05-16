@@ -155,6 +155,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRight: 0
-  bullet: {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
+  bullet:
+  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
+  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
+  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
+  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
+  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
+  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
+  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
+  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
+  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
+  - {fileID: 0}
   bulletSpeed: 1
   bulletRange: 1
