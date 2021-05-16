@@ -32,11 +32,21 @@ namespace Assets.Scripts
             moveVector.x = Input.GetAxis("Horizontal") * speedMove;
             if (moveVector.x != 0)
             {
-                _animator.Play("Move");
+                _animator.SetBool("Move", true);
+             //   _animator.Play("Move");
             }
             else
             {
-                _animator.Play("Stay");
+                _animator.SetBool("Move", false);
+            }
+
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                _animator.SetBool("Squat", true);
+            }
+            else
+            {
+                _animator.SetBool("Squat", false);
             }
 
             if (Input.GetKey(KeyCode.LeftShift))
@@ -48,7 +58,7 @@ namespace Assets.Scripts
                 Vector3 direct = Vector3.RotateTowards(transform.forward, moveVector, speedMove, 0.0f);
                 transform.rotation = Quaternion.LookRotation(direct);
             }
-        
+
             moveVector.y = gravity;
             ch_controller.Move(moveVector * Time.deltaTime);
         }
@@ -64,7 +74,7 @@ namespace Assets.Scripts
             }
             if (Input.GetKey(KeyCode.Space) && ch_controller.isGrounded)
             {
-                _animator.Play("Jump");
+                _animator.SetBool("Jump", true);
             }
             if (Input.GetKeyDown(KeyCode.Space) && ch_controller.isGrounded)
             {
