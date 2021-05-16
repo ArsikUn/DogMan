@@ -11,14 +11,13 @@ namespace Trap
         
         [SerializeField] private bool isRight = false;
         [SerializeField] private GameObject bullet;
-        [Range(4,6)]
-        [SerializeField] private float bulletSpeed = 1;
-        [Range(0.2f,2)]
+       
+        [Range(0.2f,3)]
         [SerializeField] private float bulletRange = 1;
         
 
         private Vector3 bulletStartPos;
-        public static Action<bool,float> right = delegate { };
+      
 
         void OnEnable()
         {
@@ -31,15 +30,14 @@ namespace Trap
         {
             while (true)
             {
-                Instantiate(bullet);
-                right(isRight, bulletSpeed);
-                bullet.transform.position = bulletStartPos;
+                var _bullet = Instantiate(bullet);
+                _bullet.transform.position = bulletStartPos;
                 yield return new WaitForSeconds(bulletRange);
             }
 
         }
 
-        
+
     }
 }
    
