@@ -6,35 +6,31 @@ namespace Trap
 {
     public class BulletScript : MonoBehaviour
     {
-        private bool right = false;
+        public bool right = false;
         private int _moveRight = 1;
-        private float bulletSpeed;
+        public float bulletSpeed;
 
         public static Action death = delegate { };
 
-        void OnEnable()
-        {
-            ShootTrapScript.right += ShootTrapScript_Right;
-        }
 
-        private void ShootTrapScript_Right(bool right, float bulletSpeed)
+        void Start()
         {
-            this.bulletSpeed = bulletSpeed;
             if (!right)
             {
                 _moveRight = -1;
             }
         }
 
+
         void Update()
         {
-            transform.Translate(Vector3.right * 0.01f* _moveRight* bulletSpeed);
-            
+            transform.Translate(Vector3.right * 0.01f * _moveRight * bulletSpeed);
+
         }
 
         private void OnTriggerEnter(Collider other)
         {
-           
+
             if (other.gameObject.tag == "player")
             {
                 death();
@@ -46,9 +42,5 @@ namespace Trap
 
         }
 
-        void OnDisable()
-        {
-            ShootTrapScript.right -= ShootTrapScript_Right;
-        }
     }
 }

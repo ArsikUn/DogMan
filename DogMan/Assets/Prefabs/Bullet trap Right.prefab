@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9071972796206564780}
   - component: {fileID: 6818409673594351765}
   m_Layer: 0
-  m_Name: Bullet trap
+  m_Name: Bullet trap Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,6 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cef537f9aadae84ea92c29947e37ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  right: 1
+  bulletSpeed: 3
 --- !u!54 &231710303425774470
 Rigidbody:
   m_ObjectHideFlags: 0
