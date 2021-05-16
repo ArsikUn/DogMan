@@ -12,7 +12,7 @@ namespace Trap
         [SerializeField] private bool isRight = false;
         [SerializeField] private GameObject bullet;
        
-        [Range(0.2f,2)]
+        [Range(0.2f,3)]
         [SerializeField] private float bulletRange = 1;
         
 
