@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="479957ef-cadf-412d-a331-28d79551e2e5" name="Default Changelist" comment="" />
+    <list default="true" id="479957ef-cadf-412d-a331-28d79551e2e5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Shader.meta" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,6 +38,7 @@
       <option name="presentableId" value="Default" />
       <updated>1621074009130</updated>
       <workItem from="1621074019842" duration="8829000" />
+      <workItem from="1621157631922" duration="599000" />
     </task>
     <servers />
   </component>
@@ -52,6 +55,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

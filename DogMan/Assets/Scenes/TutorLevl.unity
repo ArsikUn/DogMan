@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -1047,7 +1047,7 @@ PrefabInstance:
     - target: {fileID: 8629135514027821648, guid: bf9adb51db992dc48843199eef65aee2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.7345257
+      value: 0.041
       objectReference: {fileID: 0}
     - target: {fileID: 8629135514027821648, guid: bf9adb51db992dc48843199eef65aee2,
         type: 3}
@@ -1142,13 +1142,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 3.4
+  m_Radius: 1.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.07, y: 0.5, z: 0}
 --- !u!23 &743687918885619652
 MeshRenderer:
   m_ObjectHideFlags: 0
