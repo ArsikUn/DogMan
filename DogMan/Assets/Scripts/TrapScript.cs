@@ -11,7 +11,7 @@ public class TrapScript : MonoBehaviour
 
     void Start()
     {
-        vector3 = new Vector3(0.5f, 1, 0);
+        vector3 = new Vector3(0.2f, 1f, 0);
     }
     
     private void OnTriggerEnter(Collider other)
@@ -19,7 +19,7 @@ public class TrapScript : MonoBehaviour
         
         if (other.gameObject.tag=="player")
         {
-            damage(vector3 * 2);
+            damage(vector3 * 1.5f);
         }
         
     }

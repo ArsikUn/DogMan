@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="479957ef-cadf-412d-a331-28d79551e2e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DogMan/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DogMan/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/StepSquat.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/StepSquat.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Start.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Start.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TutorLevl.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TutorLevl.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMove.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TrapScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TrapScript.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +22,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/MovePlayerRig.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Movement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMove.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/TrapScript.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1sZJ6fA5x5rYarRbTcFNgl34cjR" />
@@ -42,7 +47,7 @@
       <updated>1621074009130</updated>
       <workItem from="1621074019842" duration="8829000" />
       <workItem from="1621157631922" duration="25757000" />
-      <workItem from="1621249370735" duration="19027000" />
+      <workItem from="1621249370735" duration="20658000" />
     </task>
     <servers />
   </component>

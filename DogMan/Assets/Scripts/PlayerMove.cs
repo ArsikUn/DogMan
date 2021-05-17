@@ -46,9 +46,9 @@ namespace Assets.Scripts
         IEnumerator Force(Vector3 vector3)
         {
 
-             rb.AddForce(vector3 * 250f,ForceMode.Force);
-            yield return new WaitForSecondsRealtime(0.1f);
-            rb.AddForce(vector3 * -250f, ForceMode.Force);
+            rb.AddForce(vector3 * 350f,ForceMode.Force);
+            yield return new WaitForSecondsRealtime(0.2f);
+            rb.AddForce(vector3 * -350f, ForceMode.Force);
 
         }
 
@@ -87,6 +87,7 @@ namespace Assets.Scripts
                 GetComponent<CharacterController>().radius = 0.5f;
                 GetComponent<CharacterController>().height = 3.4f;
                 GetComponent<CharacterController>().center = new Vector3(0.0f, 0.4f, -0.05f);
+                
                 if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
                 {
                     _animator.SetBool("StepSquat", true);
@@ -99,9 +100,10 @@ namespace Assets.Scripts
             }
             else
             {
-               GetComponent<CharacterController>().radius = 0.5f;
+                GetComponent<CharacterController>().radius = 0.5f;
                 GetComponent<CharacterController>().height = 3.8f;
                 GetComponent<CharacterController>().center = new Vector3(0.0f, 0.5f, -0.05f);
+                
                 _animator.SetBool("StepSquat", false);
                 _animator.SetBool("Squat", false);
             }
@@ -129,7 +131,7 @@ namespace Assets.Scripts
         {
             if (!ch_controller.isGrounded)
             {
-                gravity -= 30f*Time.deltaTime;
+                gravity -= 30f * Time.deltaTime;
             }
             else
             {
@@ -141,6 +143,7 @@ namespace Assets.Scripts
         {
             Ray ray2= new Ray(Vector3.zero,Vector3.zero);
             Ray ray = new Ray(Vector3.zero,Vector3.zero);
+            
             if (right)
             {
                 ray2 = new Ray(gameObject.transform.position, Vector3.right);
@@ -160,6 +163,7 @@ namespace Assets.Scripts
             Debug.DrawRay(transform.position, ray3.direction * 1f); 
             
             RaycastHit rh;
+            
             if (Physics.Raycast(ray4, out rh, 1.3f))
             {
                 isRoof = true;
