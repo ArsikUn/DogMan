@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics.SymbolStore;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Assets.Scripts
 {
@@ -14,31 +16,37 @@ namespace Assets.Scripts
         public bool isGround;
         public bool isWall;
         public bool isRoof;
+        public bool isEnemy;
 
         private float gravity;
         private Vector3 moveVector;
 
         private CharacterController ch_controller;
+        private Transform frontCheck;
         private void Start()
         {
             ch_controller = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
+            frontCheck = GetComponent<Transform>();
         }
 
         private void Update()
         {
+            if (frontCheck)
+            {
+                
+            }
             CharasterMove();
             GameGravity();
             Jump();
-            
         }
 
         private void CharasterMove()
         {
             moveVector = Vector3.zero;
             moveVector.x = Input.GetAxis("Horizontal") * speedMove;
-            
+          
             if (moveVector.x != 0)
             {
                 _animator.SetBool("Move", true);
@@ -56,12 +64,16 @@ namespace Assets.Scripts
                 {
                     _animator.SetBool("StepSquat", true);
                 }
+                else
+                {
+                    _animator.SetBool("StepSquat", false);
+                }
                 _animator.SetBool("Squat", true);
             }
             else
             {
                 GetComponent<CharacterController>().height = 3.4f;
-                GetComponent<CharacterController>().center = new Vector3(0.07f, 0.5f, 0.0f);
+                GetComponent<CharacterController>().center = new Vector3(0.07f, 0.5f, 0f);
                 _animator.SetBool("StepSquat", false);
                 _animator.SetBool("Squat", false);
             }
@@ -121,6 +133,7 @@ namespace Assets.Scripts
             {
                 gravity = -1f;
             }
+
             if (Physics.Raycast(ray3, out rh, 1.0f))
             {
                 isGround = true;
@@ -132,7 +145,6 @@ namespace Assets.Scripts
 
             if (Physics.Raycast(ray, out rh, 0.9f) || Physics.Raycast(ray2, out rh, 0.9f))
             {
-                gravity = -0.5f;
                 isWall = true;
             }
             else
@@ -140,12 +152,12 @@ namespace Assets.Scripts
                 isWall = false;
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && isGround == true || Input.GetKeyDown(KeyCode.Space) &&  isWall == true)
+            if (Input.GetKeyDown(KeyCode.Space) && isGround == true ||
+                Input.GetKeyDown(KeyCode.Space) && isWall == true)
             {
                 gravity = jumpPower;
             }
         }
-
 
     }
 }
