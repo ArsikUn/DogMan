@@ -155,5 +155,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRight: 0
-  bullet: {fileID: 0}
+  bullet: {fileID: 3523770956118858701, guid: 7397a47008960ea42a7e99fbf55ba1b4, type: 3}
   bulletRange: 1

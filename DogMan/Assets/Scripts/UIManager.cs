@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Trap;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -8,22 +10,51 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject[] HP;
     [SerializeField] private GameObject UI;
     [SerializeField] private GameObject DeathUI;
+    [SerializeField] private GameObject GoToDoor;
+    [SerializeField] private GameObject puse;
+
+    private bool costil = true;
+
+    private AudioSource collect;
+    private AudioSource ouch;
 
     private int hpIndex;
     private int levlComplete = 0;
+
+    public static Action win = delegate { };
 
     void OnEnable()
     {
         hpIndex = HP.Length-1;
         TrapScript.damage += TrapScript_Damage;
         ThingsScript.collect += ThingsScript_Collect;
-
+        BulletScript.damege += TrapScript_Damage;
+        collect = GetComponent<AudioSource>();
+        var child = transform.GetChild(0);
+        ouch = child.gameObject.GetComponent<AudioSource>() ;
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (costil)
+            {
+                puse.SetActive(true);
+                costil = false;
+            }
+            else
+            {
+                puse.SetActive(false);
+                costil = true;
+            }
+        }
+    }
     private void TrapScript_Damage()
     {
         if (hpIndex>=0)
         {
+            ouch.Play();
             HP[hpIndex].SetActive(false);
             if (hpIndex==0)
             {
@@ -32,9 +63,7 @@ public class UIManager : MonoBehaviour
             hpIndex--;
         }
         
-       
     }
-
     private void death()
     {
         UI.SetActive(false);
@@ -57,15 +86,18 @@ public class UIManager : MonoBehaviour
 
         if (levlComplete == 2)
         {
-            Debug.Log("Level");
+            GoToDoor.SetActive(true);
+            win();
         }
 
+        collect.Play();
         levlComplete++;
     }
-
     void OnDisable()
     {
         TrapScript.damage -= TrapScript_Damage;
         ThingsScript.collect -= ThingsScript_Collect;
+        BulletScript.damege -= TrapScript_Damage;
+
     }
 }

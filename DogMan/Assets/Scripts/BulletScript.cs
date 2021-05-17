@@ -10,7 +10,7 @@ namespace Trap
         private int _moveRight = 1;
         public float bulletSpeed;
 
-        public static Action death = delegate { };
+        public static Action damege = delegate { };
 
 
         void Start()
@@ -33,12 +33,11 @@ namespace Trap
 
             if (other.gameObject.tag == "player")
             {
-                death();
+                damege();
             }
-            else
-            {
-                Destroy(gameObject);
-            }
+
+            Destroy(gameObject);
+
 
         }
 

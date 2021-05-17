@@ -6,6 +6,9 @@ public class ThingsScript : MonoBehaviour
 {
      private float speed = 1;
      [SerializeField] private string name;
+ 
+
+     
 
      public static Action<string> collect = delegate { };
      void Update()
@@ -18,8 +21,10 @@ public class ThingsScript : MonoBehaviour
      {
          if (other.gameObject.tag=="player")
          {
-             Destroy(gameObject);
-             collect(name);
+             
+             
+            Destroy(gameObject);
+            collect(name);
         }
          
      }
