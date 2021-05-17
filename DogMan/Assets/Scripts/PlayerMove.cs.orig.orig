@@ -10,6 +10,7 @@ namespace Assets.Scripts
     public class PlayerMove : MonoBehaviour
     {
         private Animator _animator;
+        private Animation _animation;
     
         public float speedMove;
         public float shiftMove;
@@ -20,47 +21,47 @@ namespace Assets.Scripts
         public bool isWall;
         public bool isRoof;
         public bool right = true;
-        public GameObject molot;
-        public bool isMolot;
 
         private float gravity;
         private Vector3 moveVector;
-        private Collision col; 
-        object obj;
         private CharacterController ch_controller;
-        public GameObject player;
+        private bool _animationIsPlaying;
 
-        
+
         private void Start()
         {
             ch_controller = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
 <<<<<<< HEAD
-            BulletScript.damege += _bulletDeath;
+            _animation = GetComponent<Animation>();
 =======
-            BulletScript.death += _bulletDeath;
+>>>>>>> 416bef2217cffa089decff54e41fa7a638ea7a61
+            BulletScript.damege += _bulletDeath;
             TrapScript.damage += _bulletDeath;
->>>>>>> origin/Senia/Animation
         }
 
         private void _bulletDeath()
         {
 <<<<<<< HEAD
-            Debug.Log("damege");
+           // StartCoroutine(Force());
 =======
             StartCoroutine(Force());
+>>>>>>> 416bef2217cffa089decff54e41fa7a638ea7a61
         }
 
-        IEnumerator Force()
+        /*IEnumerator Force()
         {
            
-            rb.AddForce(Vector3.left*250f,ForceMode.Force);
+           // rb.AddForce(Vector3.left*250f,ForceMode.Force);
             yield return new WaitForSecondsRealtime (1);
-            rb.AddForce(0f, 0f, 0f);
+            //rb.AddForce(0f, 0f, 0f);
 
->>>>>>> origin/Senia/Animation
+<<<<<<< HEAD
+        }*/
+=======
         }
+>>>>>>> 416bef2217cffa089decff54e41fa7a638ea7a61
 
         private void Update()
         {
@@ -197,26 +198,24 @@ namespace Assets.Scripts
 
             if (Physics.Raycast(ray, out rh, 1f) || Physics.Raycast(ray2, out rh, 1f))
             {
-                isMolot = true;
                 isWall = true;
             }
             else
             {
-                isMolot = false;
                 isWall = false;
             }
             
             if (Input.GetKeyDown(KeyCode.Space) && isGround == true ||
                 Input.GetKeyDown(KeyCode.Space) && isWall == true)
             {
-                _animator.SetBool("Jump", true);
+              
                 gravity = jumpPower;
             }
             else
             {
-                _animator.SetBool("Jump", false);  
+                
             }
-            
+
         }
 
     }
