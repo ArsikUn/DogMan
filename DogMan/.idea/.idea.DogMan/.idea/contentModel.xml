@@ -8,7 +8,6 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="BulletScript.cs" t="Include" />
-          <e p="MovePlayerRig.cs" t="Include" />
           <e p="PlayerMove.cs" t="Include" />
           <e p="ShootTrapScript.cs" t="Include" />
           <e p="SwingTrapScript.cs" t="Include" />

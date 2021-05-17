@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.SymbolStore;
+﻿using System;
+using System.Diagnostics.SymbolStore;
+using Trap;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -16,27 +18,29 @@ namespace Assets.Scripts
         public bool isGround;
         public bool isWall;
         public bool isRoof;
-        public bool isEnemy;
+        public bool right = true;
 
         private float gravity;
         private Vector3 moveVector;
 
         private CharacterController ch_controller;
-        private Transform frontCheck;
+
+        
         private void Start()
         {
             ch_controller = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
-            frontCheck = GetComponent<Transform>();
+            BulletScript.death += _bulletDeath;
+        }
+
+        private void _bulletDeath()
+        {
+            Debug.Log("death");
         }
 
         private void Update()
         {
-            if (frontCheck)
-            {
-                
-            }
             CharasterMove();
             GameGravity();
             Jump();
@@ -49,6 +53,14 @@ namespace Assets.Scripts
           
             if (moveVector.x != 0)
             {
+                if (moveVector.x > 0)
+                {
+                    right = true;
+                }
+                else
+                {
+                    right = false;
+                }
                 _animator.SetBool("Move", true);
             }
             else
@@ -56,10 +68,11 @@ namespace Assets.Scripts
                 _animator.SetBool("Move", false);
             }
             
+            
             if (Input.GetKey(KeyCode.LeftControl))
             { 
-                GetComponent<CharacterController>().height = 0.5f;
-                GetComponent<CharacterController>().center = new Vector3(0.07f, 0.0f, 0.0f);
+                GetComponent<CharacterController>().height = 2.8f;
+                GetComponent<CharacterController>().center = new Vector3(0.07f, 0.2f, 0.4f);
                 if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
                 {
                     _animator.SetBool("StepSquat", true);
@@ -73,7 +86,7 @@ namespace Assets.Scripts
             else
             {
                 GetComponent<CharacterController>().height = 3.4f;
-                GetComponent<CharacterController>().center = new Vector3(0.07f, 0.5f, 0f);
+                GetComponent<CharacterController>().center = new Vector3(0.07f, 0.5f, 0.4f);
                 _animator.SetBool("StepSquat", false);
                 _animator.SetBool("Squat", false);
             }
@@ -108,19 +121,31 @@ namespace Assets.Scripts
                 gravity = -1f;
             }
         }
-
+        
         private void Jump()
         {
-            Ray ray = new Ray(gameObject.transform.position, Vector3.left);
-            Ray ray2 = new Ray(gameObject.transform.position, Vector3.right);
+            Ray ray2= new Ray(Vector3.zero,Vector3.zero);
+            Ray ray = new Ray(Vector3.zero,Vector3.zero);
+            if (right)
+            {
+                ray2 = new Ray(gameObject.transform.position, Vector3.right);
+                Debug.DrawRay(transform.position, ray2.direction * 1f);
+                ray = new Ray(Vector3.zero, Vector3.zero);
+            }
+            else
+            {
+                ray = new Ray(gameObject.transform.position, Vector3.left);
+                Debug.DrawRay(transform.position, ray.direction * 1f);
+            }
+            
             Ray ray3 = new Ray(gameObject.transform.position, Vector3.down);
             Ray ray4 = new Ray(gameObject.transform.position, Vector3.up);
-            Debug.DrawRay(transform.position, ray2.direction * 1f);
+            
             Debug.DrawRay(transform.position, ray4.direction * 2f);
-            Debug.DrawRay(transform.position, ray3.direction * 1f);
-            Debug.DrawRay(transform.position, ray.direction * 1f);
+            Debug.DrawRay(transform.position, ray3.direction * 1f); 
+            
             RaycastHit rh;
-            if (Physics.Raycast(ray4, out rh, 1.5f))
+            if (Physics.Raycast(ray4, out rh, 1.0f))
             {
                 isRoof = true;
             }
@@ -143,7 +168,7 @@ namespace Assets.Scripts
                 isGround = false;
             }
 
-            if (Physics.Raycast(ray, out rh, 0.9f) || Physics.Raycast(ray2, out rh, 0.9f))
+            if (Physics.Raycast(ray, out rh, 1f) || Physics.Raycast(ray2, out rh, 1f))
             {
                 isWall = true;
             }
