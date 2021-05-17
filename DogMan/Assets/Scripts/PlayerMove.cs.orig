@@ -10,56 +10,61 @@ namespace Assets.Scripts
     public class PlayerMove : MonoBehaviour
     {
         private Animator _animator;
-    
+
         public float speedMove;
         public float shiftMove;
         public float jumpPower;
+        private float gravity;
 
-        private Rigidbody rb;
         public bool isGround;
         public bool isWall;
         public bool isRoof;
         public bool right = true;
-        public GameObject molot;
-        public bool isMolot;
 
-        private float gravity;
+        private Rigidbody rb;
+
         private Vector3 moveVector;
-        private Collision col; 
-        object obj;
-        private CharacterController ch_controller;
-        public GameObject player;
-
         
+        private CharacterController ch_controller;
+
         private void Start()
         {
             ch_controller = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
 <<<<<<< HEAD
-            BulletScript.damege += _bulletDeath;
+            _animation = GetComponent<Animation>();
+            SwingTrapScript.damage += _bulletDeath;
 =======
-            BulletScript.death += _bulletDeath;
+            
+>>>>>>> dffc76374cdc6bc1d2c72d2b0a4f427198f5401e
+            BulletScript.damege += _bulletDeath;
             TrapScript.damage += _bulletDeath;
->>>>>>> origin/Senia/Animation
         }
 
-        private void _bulletDeath()
+        private void _bulletDeath(Vector3 vector3)
         {
 <<<<<<< HEAD
-            Debug.Log("damege");
+            StartCoroutine(Force(vector3));
+        }
+
+        IEnumerator Force(Vector3 vector3)
+        {
+
+             rb.AddForce(vector3 * 250f,ForceMode.Force);
+            yield return new WaitForSecondsRealtime(0.1f);
+            rb.AddForce(vector3 * -250f, ForceMode.Force);
+
 =======
-            StartCoroutine(Force());
+           StartCoroutine(Force());
         }
 
         IEnumerator Force()
         {
-           
-            rb.AddForce(Vector3.left*250f,ForceMode.Force);
-            yield return new WaitForSecondsRealtime (1);
-            rb.AddForce(0f, 0f, 0f);
-
->>>>>>> origin/Senia/Animation
+            rb.AddForce(Vector3.left*250f);
+            yield return new WaitForSecondsRealtime (0.4f);
+            rb.AddForce(Vector3.left*-250f);
+>>>>>>> dffc76374cdc6bc1d2c72d2b0a4f427198f5401e
         }
 
         private void Update()
@@ -197,12 +202,10 @@ namespace Assets.Scripts
 
             if (Physics.Raycast(ray, out rh, 1f) || Physics.Raycast(ray2, out rh, 1f))
             {
-                isMolot = true;
                 isWall = true;
             }
             else
             {
-                isMolot = false;
                 isWall = false;
             }
             
@@ -214,10 +217,16 @@ namespace Assets.Scripts
             }
             else
             {
-                _animator.SetBool("Jump", false);  
+                _animator.SetBool("Jump", false);
             }
-            
+
         }
 
+        private void OnDisable()
+        {
+            SwingTrapScript.damage -= _bulletDeath;
+            BulletScript.damege -= _bulletDeath;
+            TrapScript.damage -= _bulletDeath;
+        }
     }
 }

@@ -9,6 +9,7 @@
         <e p="Scripts" t="Include">
           <e p="BulletScript.cs" t="Include" />
           <e p="ButtonController.cs" t="Include" />
+          <e p="Costil.cs" t="Include" />
           <e p="Dialog" t="Include">
             <e p="Dialog.cs" t="Include" />
             <e p="DialogManager.cs" t="Include" />
