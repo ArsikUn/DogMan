@@ -103,7 +103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7644689819568323488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.788, y: -0.207, z: 0.122}
+  m_LocalPosition: {x: -10.936, y: -0.207, z: 0.153}
   m_LocalScale: {x: 0.43613, y: 0.3847663, z: 0.39105}
   m_Children: []
   m_Father: {fileID: 7874568363448318731}
@@ -155,16 +155,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRight: 0
-  bullet:
-  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
-  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
-  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
-  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
-  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
-  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
-  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
-  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
-  - {fileID: 3523770956118858701, guid: 6310e82f2c5b4da4f86b3916e7f92de8, type: 3}
-  - {fileID: 0}
-  bulletSpeed: 1
+  bullet: {fileID: 0}
   bulletRange: 1
