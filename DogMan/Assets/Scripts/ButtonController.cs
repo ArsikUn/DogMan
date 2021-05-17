@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ButtonController : MonoBehaviour
 {
     private AudioSource audioSource;
+    private bool costil =true;
 
     void Start()
     {
@@ -20,7 +21,16 @@ public class ButtonController : MonoBehaviour
 
     public void LoadLevl(int LevlIndex)
     {
-        audioSource.Play();
-        SceneSwith.SwithToScene(LevlIndex);
+        if (costil)
+        {
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
+            
+            SceneSwith.SwithToScene(LevlIndex);
+            costil = false;
+        }
+       
     }
 }

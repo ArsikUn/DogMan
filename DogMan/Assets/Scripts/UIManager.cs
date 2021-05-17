@@ -1,4 +1,5 @@
-﻿using Trap;
+﻿using System;
+using Trap;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,12 +10,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject[] HP;
     [SerializeField] private GameObject UI;
     [SerializeField] private GameObject DeathUI;
+    [SerializeField] private GameObject GoToDoor;
 
     private AudioSource collect;
     private AudioSource ouch;
 
     private int hpIndex;
     private int levlComplete = 0;
+
+    public static Action win = delegate { };
 
     void OnEnable()
     {
@@ -64,7 +68,8 @@ public class UIManager : MonoBehaviour
 
         if (levlComplete == 2)
         {
-            Debug.Log("Level");
+            GoToDoor.SetActive(true);
+            win();
         }
 
         collect.Play();
