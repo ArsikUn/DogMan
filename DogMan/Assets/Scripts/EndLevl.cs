@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class EndLevl : MonoBehaviour
 {
-   
+    private bool costil = true;
     private bool _win;
 
     void Start()
     {
+        costil = true;
         UIManager.win += UIManager_Win;
     }
 
@@ -22,7 +23,12 @@ public class EndLevl : MonoBehaviour
     {
         if (_win)
         {
-            SceneSwith.SwithToScene(3);
+            if (costil)
+            {
+                SceneSwith.SwithToScene(3);
+                costil = false;
+            }
+           
             
         }
        
