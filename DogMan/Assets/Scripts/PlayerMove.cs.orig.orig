@@ -33,14 +33,21 @@ namespace Assets.Scripts
             ch_controller = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
+<<<<<<< HEAD
             _animation = GetComponent<Animation>();
+=======
+>>>>>>> 416bef2217cffa089decff54e41fa7a638ea7a61
             BulletScript.damege += _bulletDeath;
             TrapScript.damage += _bulletDeath;
         }
 
         private void _bulletDeath()
         {
+<<<<<<< HEAD
            // StartCoroutine(Force());
+=======
+            StartCoroutine(Force());
+>>>>>>> 416bef2217cffa089decff54e41fa7a638ea7a61
         }
 
         /*IEnumerator Force()
@@ -50,7 +57,11 @@ namespace Assets.Scripts
             yield return new WaitForSecondsRealtime (1);
             //rb.AddForce(0f, 0f, 0f);
 
+<<<<<<< HEAD
         }*/
+=======
+        }
+>>>>>>> 416bef2217cffa089decff54e41fa7a638ea7a61
 
         private void Update()
         {
