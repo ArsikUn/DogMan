@@ -11,6 +11,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject UI;
     [SerializeField] private GameObject DeathUI;
     [SerializeField] private GameObject GoToDoor;
+    [SerializeField] private GameObject puse;
+
+    private bool costil = true;
 
     private AudioSource collect;
     private AudioSource ouch;
@@ -31,6 +34,22 @@ public class UIManager : MonoBehaviour
         ouch = child.gameObject.GetComponent<AudioSource>() ;
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (costil)
+            {
+                puse.SetActive(true);
+                costil = false;
+            }
+            else
+            {
+                puse.SetActive(false);
+                costil = true;
+            }
+        }
+    }
     private void TrapScript_Damage()
     {
         if (hpIndex>=0)
@@ -45,7 +64,6 @@ public class UIManager : MonoBehaviour
         }
         
     }
-
     private void death()
     {
         UI.SetActive(false);
@@ -75,7 +93,6 @@ public class UIManager : MonoBehaviour
         collect.Play();
         levlComplete++;
     }
-
     void OnDisable()
     {
         TrapScript.damage -= TrapScript_Damage;
