@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class TrapScript : MonoBehaviour
 {
-    public static Action death = delegate { };
+    public static Action damage = delegate { };
     
     private void OnTriggerEnter(Collider other)
     {
         
         if (other.gameObject.tag=="player")
         {
-            death();
+            damage();
         }
         
     }

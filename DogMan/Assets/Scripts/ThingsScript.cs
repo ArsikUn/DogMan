@@ -16,7 +16,12 @@ public class ThingsScript : MonoBehaviour
 
      void OnTriggerEnter(Collider other)
      {
-         collect(name);
+         if (other.gameObject.tag=="player")
+         {
+             Destroy(gameObject);
+             collect(name);
+        }
+         
      }
 
    
