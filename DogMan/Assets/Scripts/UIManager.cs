@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject UI;
     [SerializeField] private GameObject DeathUI;
 
+    private AudioSource collect;
+    private AudioSource ouch;
+
     private int hpIndex;
     private int levlComplete = 0;
 
@@ -19,13 +22,16 @@ public class UIManager : MonoBehaviour
         TrapScript.damage += TrapScript_Damage;
         ThingsScript.collect += ThingsScript_Collect;
         BulletScript.damege += TrapScript_Damage;
-
+        collect = GetComponent<AudioSource>();
+        var child = transform.GetChild(0);
+        ouch = child.gameObject.GetComponent<AudioSource>() ;
     }
 
     private void TrapScript_Damage()
     {
         if (hpIndex>=0)
         {
+            ouch.Play();
             HP[hpIndex].SetActive(false);
             if (hpIndex==0)
             {
@@ -34,7 +40,6 @@ public class UIManager : MonoBehaviour
             hpIndex--;
         }
         
-       
     }
 
     private void death()
@@ -62,6 +67,7 @@ public class UIManager : MonoBehaviour
             Debug.Log("Level");
         }
 
+        collect.Play();
         levlComplete++;
     }
 
