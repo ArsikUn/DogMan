@@ -71,8 +71,9 @@ namespace Assets.Scripts
             
             if (Input.GetKey(KeyCode.LeftControl))
             { 
+                GetComponent<CharacterController>().radius = 0.8f;
                 GetComponent<CharacterController>().height = 2.8f;
-                GetComponent<CharacterController>().center = new Vector3(0.07f, 0.2f, 0.4f);
+                GetComponent<CharacterController>().center = new Vector3(0.07f, 0.2f, 0.6f);
                 if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
                 {
                     _animator.SetBool("StepSquat", true);
@@ -85,8 +86,9 @@ namespace Assets.Scripts
             }
             else
             {
+                GetComponent<CharacterController>().radius = 0.8f;
                 GetComponent<CharacterController>().height = 3.4f;
-                GetComponent<CharacterController>().center = new Vector3(0.07f, 0.5f, 0.4f);
+                GetComponent<CharacterController>().center = new Vector3(0.07f, 0.4f, 0.6f);
                 _animator.SetBool("StepSquat", false);
                 _animator.SetBool("Squat", false);
             }
