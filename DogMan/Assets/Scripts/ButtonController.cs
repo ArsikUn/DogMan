@@ -10,6 +10,7 @@ public class ButtonController : MonoBehaviour
 
     void Start()
     {
+        costil = true;
         audioSource = GetComponent<AudioSource>();
     }
     public void Reload()

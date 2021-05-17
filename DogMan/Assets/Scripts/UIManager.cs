@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject puse;
 
     private bool costil = true;
+    
 
     private AudioSource collect;
     private AudioSource ouch;
