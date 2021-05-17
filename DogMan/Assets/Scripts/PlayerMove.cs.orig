@@ -10,7 +10,6 @@ namespace Assets.Scripts
     public class PlayerMove : MonoBehaviour
     {
         private Animator _animator;
-        private Animation _animation;
     
         public float speedMove;
         public float shiftMove;
@@ -21,36 +20,47 @@ namespace Assets.Scripts
         public bool isWall;
         public bool isRoof;
         public bool right = true;
+        public GameObject molot;
+        public bool isMolot;
 
         private float gravity;
         private Vector3 moveVector;
+        private Collision col; 
+        object obj;
         private CharacterController ch_controller;
-        private bool _animationIsPlaying;
+        public GameObject player;
 
-
+        
         private void Start()
         {
             ch_controller = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
-            _animation = GetComponent<Animation>();
-            BulletScript.damege += _bulletDeath;
+<<<<<<< HEAD
+            BulletScript.death += _bulletDeath;
             TrapScript.damage += _bulletDeath;
+=======
+            BulletScript.damege += _bulletDeath;
+>>>>>>> main
         }
 
         private void _bulletDeath()
         {
-           // StartCoroutine(Force());
+<<<<<<< HEAD
+            StartCoroutine(Force());
         }
 
-        /*IEnumerator Force()
+        IEnumerator Force()
         {
            
-           // rb.AddForce(Vector3.left*250f,ForceMode.Force);
+            rb.AddForce(Vector3.left*250f,ForceMode.Force);
             yield return new WaitForSecondsRealtime (1);
-            //rb.AddForce(0f, 0f, 0f);
+            rb.AddForce(0f, 0f, 0f);
 
-        }*/
+=======
+            Debug.Log("damege");
+>>>>>>> main
+        }
 
         private void Update()
         {
@@ -187,24 +197,26 @@ namespace Assets.Scripts
 
             if (Physics.Raycast(ray, out rh, 1f) || Physics.Raycast(ray2, out rh, 1f))
             {
+                isMolot = true;
                 isWall = true;
             }
             else
             {
+                isMolot = false;
                 isWall = false;
             }
             
             if (Input.GetKeyDown(KeyCode.Space) && isGround == true ||
                 Input.GetKeyDown(KeyCode.Space) && isWall == true)
             {
-              
+                _animator.SetBool("Jump", true);
                 gravity = jumpPower;
             }
             else
             {
-                
+                _animator.SetBool("Jump", false);  
             }
-
+            
         }
 
     }

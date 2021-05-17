@@ -9,6 +9,11 @@
         <e p="Scripts" t="Include">
           <e p="BulletScript.cs" t="Include" />
           <e p="ButtonController.cs" t="Include" />
+          <e p="Dialog" t="Include">
+            <e p="Dialog.cs" t="Include" />
+            <e p="DialogManager.cs" t="Include" />
+          </e>
+          <e p="EndLevl.cs" t="Include" />
           <e p="PlayerMove.cs" t="Include" />
           <e p="SceneSwith.cs" t="Include" />
           <e p="ShootTrapScript.cs" t="Include" />
