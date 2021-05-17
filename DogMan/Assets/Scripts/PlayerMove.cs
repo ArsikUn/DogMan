@@ -34,23 +34,24 @@ namespace Assets.Scripts
             _animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
             _animation = GetComponent<Animation>();
+            SwingTrapScript.damage += _bulletDeath;
             BulletScript.damege += _bulletDeath;
             TrapScript.damage += _bulletDeath;
         }
 
-        private void _bulletDeath()
+        private void _bulletDeath(Vector3 vector3)
         {
-           // StartCoroutine(Force());
+            StartCoroutine(Force(vector3));
         }
 
-        /*IEnumerator Force()
+        IEnumerator Force(Vector3 vector3)
         {
-           
-           // rb.AddForce(Vector3.left*250f,ForceMode.Force);
-            yield return new WaitForSecondsRealtime (1);
-            //rb.AddForce(0f, 0f, 0f);
 
-        }*/
+             rb.AddForce(vector3 * 250f,ForceMode.Force);
+            yield return new WaitForSecondsRealtime(0.1f);
+            rb.AddForce(vector3 * -250f, ForceMode.Force);
+
+        }
 
         private void Update()
         {
@@ -207,5 +208,11 @@ namespace Assets.Scripts
 
         }
 
+        private void OnDisable()
+        {
+            SwingTrapScript.damage -= _bulletDeath;
+            BulletScript.damege -= _bulletDeath;
+            TrapScript.damage -= _bulletDeath;
+        }
     }
 }

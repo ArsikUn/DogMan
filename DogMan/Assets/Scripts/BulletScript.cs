@@ -10,7 +10,7 @@ namespace Trap
         private int _moveRight = 1;
         public float bulletSpeed;
 
-        public static Action damege = delegate { };
+        public static Action<Vector3> damege = delegate { };
 
 
         void Start()
@@ -33,7 +33,15 @@ namespace Trap
 
             if (other.gameObject.tag == "player")
             {
-                damege();
+                if (right)
+                {
+                    damege(Vector3.right);
+                }
+                else
+                {
+                    damege(Vector3.left);
+                }
+               
             }
 
             Destroy(gameObject);

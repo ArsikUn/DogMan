@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6984211091649674525}
   - component: {fileID: 1535114196048145640}
   - component: {fileID: 6854152585848678816}
-  - component: {fileID: 4516412907567355434}
+  - component: {fileID: 9032434500492842271}
   m_Layer: 0
   m_Name: trap
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 2263389641547444472}
   m_Father: {fileID: 5935913400581211404}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 75}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -75}
 --- !u!135 &1535114196048145640
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &4516412907567355434
+--- !u!114 &9032434500492842271
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3208300900693938983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a89c144ed9e43440b42d7fd6b3e3b40, type: 3}
+  m_Script: {fileID: 11500000, guid: a347163bef7cf7a4e9342b4d8afcc132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4650774936194101933

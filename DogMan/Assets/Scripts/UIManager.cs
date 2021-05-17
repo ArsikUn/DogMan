@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
         hpIndex = HP.Length-1;
         TrapScript.damage += TrapScript_Damage;
         ThingsScript.collect += ThingsScript_Collect;
+        SwingTrapScript.damage += TrapScript_Damage;
         BulletScript.damege += TrapScript_Damage;
         collect = GetComponent<AudioSource>();
         var child = transform.GetChild(0);
@@ -51,7 +52,7 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-    private void TrapScript_Damage()
+    private void TrapScript_Damage(Vector3 vector3)
     {
         if (hpIndex>=0)
         {
@@ -99,6 +100,7 @@ public class UIManager : MonoBehaviour
         TrapScript.damage -= TrapScript_Damage;
         ThingsScript.collect -= ThingsScript_Collect;
         BulletScript.damege -= TrapScript_Damage;
+        SwingTrapScript.damage -= TrapScript_Damage;
 
     }
 }
