@@ -33,4 +33,9 @@ public class ButtonController : MonoBehaviour
         }
        
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
