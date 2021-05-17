@@ -31,12 +31,12 @@ namespace Assets.Scripts
             ch_controller = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
-            BulletScript.death += _bulletDeath;
+            BulletScript.damege += _bulletDeath;
         }
 
         private void _bulletDeath()
         {
-            Debug.Log("death");
+            Debug.Log("damege");
         }
 
         private void Update()

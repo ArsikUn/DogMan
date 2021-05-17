@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Trap;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -17,6 +18,7 @@ public class UIManager : MonoBehaviour
         hpIndex = HP.Length-1;
         TrapScript.damage += TrapScript_Damage;
         ThingsScript.collect += ThingsScript_Collect;
+        BulletScript.damege += TrapScript_Damage;
 
     }
 
@@ -67,5 +69,7 @@ public class UIManager : MonoBehaviour
     {
         TrapScript.damage -= TrapScript_Damage;
         ThingsScript.collect -= ThingsScript_Collect;
+        BulletScript.damege -= TrapScript_Damage;
+
     }
 }
