@@ -10,47 +10,44 @@ namespace Assets.Scripts
     public class PlayerMove : MonoBehaviour
     {
         private Animator _animator;
-        private Animation _animation;
-    
+
         public float speedMove;
         public float shiftMove;
         public float jumpPower;
+        private float gravity;
 
-        private Rigidbody rb;
         public bool isGround;
         public bool isWall;
         public bool isRoof;
         public bool right = true;
 
-        private float gravity;
-        private Vector3 moveVector;
-        private CharacterController ch_controller;
-        private bool _animationIsPlaying;
+        private Rigidbody rb;
 
+        private Vector3 moveVector;
+        
+        private CharacterController ch_controller;
 
         private void Start()
         {
             ch_controller = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
-            _animation = GetComponent<Animation>();
+            
             BulletScript.damege += _bulletDeath;
             TrapScript.damage += _bulletDeath;
         }
 
         private void _bulletDeath()
         {
-           // StartCoroutine(Force());
+           StartCoroutine(Force());
         }
 
-        /*IEnumerator Force()
+        IEnumerator Force()
         {
-           
-           // rb.AddForce(Vector3.left*250f,ForceMode.Force);
-            yield return new WaitForSecondsRealtime (1);
-            //rb.AddForce(0f, 0f, 0f);
-
-        }*/
+            rb.AddForce(Vector3.left*250f);
+            yield return new WaitForSecondsRealtime (0.4f);
+            rb.AddForce(Vector3.left*-250f);
+        }
 
         private void Update()
         {
@@ -197,12 +194,12 @@ namespace Assets.Scripts
             if (Input.GetKeyDown(KeyCode.Space) && isGround == true ||
                 Input.GetKeyDown(KeyCode.Space) && isWall == true)
             {
-              
+                _animator.SetBool("Jump", true);
                 gravity = jumpPower;
             }
             else
             {
-                
+                _animator.SetBool("Jump", false);
             }
 
         }
