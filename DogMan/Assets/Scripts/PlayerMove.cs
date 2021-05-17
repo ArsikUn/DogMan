@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Diagnostics.SymbolStore;
 using Trap;
 using UnityEngine;
@@ -19,11 +20,15 @@ namespace Assets.Scripts
         public bool isWall;
         public bool isRoof;
         public bool right = true;
+        public GameObject molot;
+        public bool isMolot;
 
         private float gravity;
         private Vector3 moveVector;
-
+        private Collision col; 
+        object obj;
         private CharacterController ch_controller;
+        public GameObject player;
 
         
         private void Start()
@@ -32,11 +37,21 @@ namespace Assets.Scripts
             _animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
             BulletScript.damege += _bulletDeath;
+            TrapScript.damage += _bulletDeath;
         }
 
         private void _bulletDeath()
         {
-            Debug.Log("damege");
+            StartCoroutine(Force());
+        }
+
+        IEnumerator Force()
+        {
+           
+            rb.AddForce(Vector3.left*250f,ForceMode.Force);
+            yield return new WaitForSecondsRealtime (1);
+            rb.AddForce(0f, 0f, 0f);
+
         }
 
         private void Update()
@@ -71,9 +86,9 @@ namespace Assets.Scripts
             
             if (Input.GetKey(KeyCode.LeftControl))
             { 
-                GetComponent<CharacterController>().radius = 0.8f;
-                GetComponent<CharacterController>().height = 2.8f;
-                GetComponent<CharacterController>().center = new Vector3(0.07f, 0.2f, 0.6f);
+                GetComponent<CharacterController>().radius = 0.5f;
+                GetComponent<CharacterController>().height = 3.4f;
+                GetComponent<CharacterController>().center = new Vector3(0.0f, 0.4f, -0.05f);
                 if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
                 {
                     _animator.SetBool("StepSquat", true);
@@ -86,14 +101,14 @@ namespace Assets.Scripts
             }
             else
             {
-                GetComponent<CharacterController>().radius = 0.8f;
-                GetComponent<CharacterController>().height = 3.4f;
-                GetComponent<CharacterController>().center = new Vector3(0.07f, 0.4f, 0.6f);
+               GetComponent<CharacterController>().radius = 0.5f;
+                GetComponent<CharacterController>().height = 3.8f;
+                GetComponent<CharacterController>().center = new Vector3(0.0f, 0.5f, -0.05f);
                 _animator.SetBool("StepSquat", false);
                 _animator.SetBool("Squat", false);
             }
 
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) && moveVector.x!=0)
             {
                 moveVector.x = Input.GetAxis("Horizontal") * shiftMove;
                 _animator.SetBool("Shift", true);
@@ -147,7 +162,7 @@ namespace Assets.Scripts
             Debug.DrawRay(transform.position, ray3.direction * 1f); 
             
             RaycastHit rh;
-            if (Physics.Raycast(ray4, out rh, 1.0f))
+            if (Physics.Raycast(ray4, out rh, 1.3f))
             {
                 isRoof = true;
             }
@@ -158,32 +173,42 @@ namespace Assets.Scripts
 
             if (isRoof == true)
             {
-                gravity = -1f;
+                gravity = -2f;
             }
 
             if (Physics.Raycast(ray3, out rh, 1.0f))
             {
+                
                 isGround = true;
             }
             else
             {
+                
                 isGround = false;
             }
 
             if (Physics.Raycast(ray, out rh, 1f) || Physics.Raycast(ray2, out rh, 1f))
             {
+                isMolot = true;
                 isWall = true;
             }
             else
             {
+                isMolot = false;
                 isWall = false;
             }
-
+            
             if (Input.GetKeyDown(KeyCode.Space) && isGround == true ||
                 Input.GetKeyDown(KeyCode.Space) && isWall == true)
             {
+                _animator.SetBool("Jump", true);
                 gravity = jumpPower;
             }
+            else
+            {
+                _animator.SetBool("Jump", false);  
+            }
+            
         }
 
     }
